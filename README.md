@@ -1,4 +1,4 @@
-= Keylist
+# Keylist
 
 Keymappings from a yaml file:
 ```yml
@@ -26,7 +26,7 @@ keys:
     Open the launcher: [mod, d]
 ```
 
-== build
+## build
 ```sh
 nix develop
 cargo run -- -c binds.yaml
