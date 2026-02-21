@@ -13,14 +13,17 @@
       in with pkgs; {
         packages.default = rustPlatform.buildRustPackage {
           pname = "keylist";
-          version = "0.1.0";
+          version = "0.1.1";
           src = ./.;
           cargoLock.lockFile = ./Cargo.lock;
           buildInputs = [ gtk4 ];
           nativeBuildInputs = [ pkg-config wrapGAppsHook4 ];
+          ASSET_PATH = "${placeholder "out"}/share/keylist/assets";
           postInstall = ''
             install -Dm644 ${./keylist.desktop} $out/share/applications/keylist.desktop
             install -Dm644 ${./assets/Light/K_Key_Light.png} $out/share/icons/hicolor/256x256/apps/keylist.png
+            mkdir -p $out/share/keylist
+            cp -r assets $out/share/keylist/
           '';
         };
 

@@ -111,57 +111,52 @@ impl Key {
     }
 
     pub fn to_path(&self, dark: bool) -> String {
+        let assets_path = option_env!("ASSET_PATH").unwrap_or("assets").to_string();
         let theme = if dark { "Dark" } else { "Light" };
         let name = match self {
-            Key::Shift => "Shift",
-            Key::Ctrl => "Ctrl",
-            Key::Alt => "Alt",
-            Key::Win => "Win",
-            Key::Command => "Command",
-            Key::Enter => "Enter_Alt",
-            Key::Esc => "Esc",
-            Key::Space => "Space",
-            Key::Tab => "Tab",
-            Key::PrintScreen => "Print_Screen",
-            Key::Backspace => "Backspace_Alt",
-            Key::Del => "Del",
-            Key::Insert => "Insert",
-            Key::Home => "Home",
-            Key::End => "End",
-            Key::PageUp => "Page_Up",
-            Key::PageDown => "Page_Down",
-            Key::CapsLock => "Caps_Lock",
-            Key::NumLock => "Num_Lock",
-            Key::Up => "Arrow_Up",
-            Key::Down => "Arrow_Down",
-            Key::Left => "Arrow_Left",
-            Key::Right => "Arrow_Right",
-            Key::Minus => "Minus",
-            Key::Plus => "Plus",
-            Key::Slash => "Slash",
-            Key::Asterisk => "Asterisk",
-            Key::BracketLeft => "Bracket_Left",
-            Key::BracketRight => "Bracket_Right",
-            Key::Semicolon => "Semicolon",
-            Key::Quote => "Quote",
-            Key::Tilde => "Tilda",
-            Key::Question => "Question",
-            Key::MarkLeft => "Mark_Left",
-            Key::MarkRight => "Mark_Right",
-            Key::MouseLeft => "Mouse_Left",
-            Key::MouseRight => "Mouse_Right",
-            Key::MouseMiddle => "Mouse_Middle",
-            Key::Mouse => "Mouse_Simple",
-            Key::Letter(c) => {
-                return format!("assets/{}/{}_Key_{}.png", theme, c.to_uppercase(), theme);
-            }
-            Key::Digit(n) => {
-                return format!("assets/{}/{}_Key_{}.png", theme, n, theme);
-            }
-            Key::FKey(n) => {
-                return format!("assets/{}/F{}_Key_{}.png", theme, n, theme);
-            }
+            Key::Letter(c) => c.to_uppercase().to_string(),
+            Key::Digit(n) => n.to_string(),
+            Key::FKey(n) => format!("F{}", n),
+            Key::Shift => "Shift".into(),
+            Key::Ctrl => "Ctrl".into(),
+            Key::Alt => "Alt".into(),
+            Key::Win => "Win".into(),
+            Key::Command => "Command".into(),
+            Key::Enter => "Enter_Alt".into(),
+            Key::Esc => "Esc".into(),
+            Key::Space => "Space".into(),
+            Key::Tab => "Tab".into(),
+            Key::PrintScreen => "Print_Screen".into(),
+            Key::Backspace => "Backspace_Alt".into(),
+            Key::Del => "Del".into(),
+            Key::Insert => "Insert".into(),
+            Key::Home => "Home".into(),
+            Key::End => "End".into(),
+            Key::PageUp => "Page_Up".into(),
+            Key::PageDown => "Page_Down".into(),
+            Key::CapsLock => "Caps_Lock".into(),
+            Key::NumLock => "Num_Lock".into(),
+            Key::Up => "Arrow_Up".into(),
+            Key::Down => "Arrow_Down".into(),
+            Key::Left => "Arrow_Left".into(),
+            Key::Right => "Arrow_Right".into(),
+            Key::Minus => "Minus".into(),
+            Key::Plus => "Plus".into(),
+            Key::Slash => "Slash".into(),
+            Key::Asterisk => "Asterisk".into(),
+            Key::BracketLeft => "Bracket_Left".into(),
+            Key::BracketRight => "Bracket_Right".into(),
+            Key::Semicolon => "Semicolon".into(),
+            Key::Quote => "Quote".into(),
+            Key::Tilde => "Tilda".into(),
+            Key::Question => "Question".into(),
+            Key::MarkLeft => "Mark_Left".into(),
+            Key::MarkRight => "Mark_Right".into(),
+            Key::MouseLeft => "Mouse_Left".into(),
+            Key::MouseRight => "Mouse_Right".into(),
+            Key::MouseMiddle => "Mouse_Middle".into(),
+            Key::Mouse => "Mouse_Simple".into(),
         };
-        format!("assets/{}/{}_Key_{}.png", theme, name, theme)
+        format!("{}/{}/{}_Key_{}.png", assets_path, theme, name, theme)
     }
 }
