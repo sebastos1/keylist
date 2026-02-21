@@ -46,7 +46,7 @@ fn default_columns() -> u32 {
 }
 
 pub fn default_config_path() -> PathBuf {
-    dirs::home_dir()
+    dirs::config_dir()
         .unwrap()
         .join("keylist")
         .join("config.yaml")
@@ -71,6 +71,8 @@ pub struct Document {
 }
 
 pub fn load(path: Option<PathBuf>, mod_override: Option<String>) -> Document {
+    println!("deafult config path: {:?}", default_config_path());
+
     let contents = if let Some(p) = path {
         match std::fs::read_to_string(&p) {
             Ok(c) => c,
