@@ -32,5 +32,4 @@ nix develop
 cargo run -- -c binds.yaml
 ```
 
-
-
+![preview](preview.png)
